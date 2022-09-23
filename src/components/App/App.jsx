@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 //components
@@ -17,13 +18,32 @@ function App() {
   return ( //in order of loading for user
     <div className='App'>
       <Header/>
-      <Feeling/>
-      <Understanding/>
-      <Support/>
-      <Comments/>
-      <Review/>
-      <Success/>
-      <Admin/>
+      <Router>
+        {/* <Route exact path="/">
+          <Home />
+        </Route> */}
+        <Route exact path="/feeling">
+            <Feeling/>
+        </Route>
+        <Route exact path="/understanding">
+            <Understanding/>
+        </Route>
+        <Route exact path="/support">
+            <Support/>
+        </Route>
+        <Route exact path="/comments">
+            <Comments/>
+        </Route>
+        <Route exact path="/review">
+            <Review/>
+        </Route>
+        <Route exact path="/success">
+            <Success/>
+        </Route>
+        <Route exact path="/admin">
+            <Admin/>
+        </Route>
+      </Router>
     </div>
   );
 }
