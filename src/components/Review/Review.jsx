@@ -1,4 +1,13 @@
+import { useHistory } from 'react-router-dom';
+
+
+
 function Review(){
+    const history = useHistory();
+    const sendToNext = () => {
+        history.push('/success');
+    }
+
     return(
         <div>
             <h2>Review Your Feedback!</h2>
@@ -8,7 +17,7 @@ function Review(){
                 <li>Support: 5</li>
                 <li>Comments: I love this stuff!</li>
             </ul>
-            <button>Submit</button>
+            <button onClick={sendToNext}>Submit</button>
         </div>
     )
 }
