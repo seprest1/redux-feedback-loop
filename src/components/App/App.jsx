@@ -1,5 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 
 //components
@@ -14,6 +16,25 @@ import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
 
 function App() {
+  useEffect(() => {
+    getWords();
+  }, []);
+
+  //GET FLAGGED WORDS FROM DB
+  const [flaggedWords, setFlaggedWords] = useState([]);
+  const getWords = () => {
+    axios({
+        method: 'GET',
+        url: '/feedback/flaggedwords'
+    })
+    .then((response) => {
+        console.log(response.data);
+        setFlaggedWords(response.data);
+    })
+    .catch((error) => {
+        console.log('Error getting flagged words from DB', error);
+    });
+  };
 
   return ( //in order of loading for user
     <div className='App'>
@@ -32,7 +53,7 @@ function App() {
             <Support/>
         </Route>
         <Route exact path="/comments">
-            <Comments/>
+            <Comments flaggedWords={flaggedWords}/>
         </Route>
         <Route exact path="/review">
             <Review/>
@@ -41,7 +62,7 @@ function App() {
             <Success/>
         </Route>
         <Route exact path="/admin">
-            <Admin/>
+            <Admin flaggedWords={flaggedWords} getWords={getWords}/>
         </Route>
       </Router>
     </div>

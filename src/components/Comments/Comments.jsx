@@ -1,31 +1,10 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
-function Comments(){
-    useEffect(() => {
-        getWords();
-      }, []);
+function Comments({flaggedWords}){
 
     const [comments, setComments] = useState('');
-    const [flaggedWords, setFlaggedWords] = useState([]);
-
-    //GET FLAGGED WORDS FROM DB
-    const getWords = () => {
-        axios({
-            method: 'GET',
-            url: '/feedback/flaggedwords'
-        })
-        .then((response) => {
-            console.log(response.data);
-            setFlaggedWords(response.data);
-        })
-        .catch((error) => {
-            console.log('Error getting flagged words from DB', error);
-        });
-    };
-
     //FUNCTION TO FLAG COMMENTS
     const searchComments = (arrayOfFlaggedWords, string) =>{
         let isFlagged = false;

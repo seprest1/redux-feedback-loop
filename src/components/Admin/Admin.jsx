@@ -3,7 +3,7 @@ import axios from 'axios';
 import AdminTable from "./AdminTable";
 import './Admin.css';
 
-function Admin(){
+function Admin ({flaggedWords, getWords}){
     useEffect(() => {
         getFeedback();
       }, []);
@@ -24,10 +24,15 @@ function Admin(){
         });
     };
 
+    console.log(flaggedWords);
+    
     return(
         <div>
             <div>
                 <h2>Feedback Results!</h2>
+            </div>
+            <div className='flagWordsSection'>
+
             </div>
             <table>
                 <thead>
