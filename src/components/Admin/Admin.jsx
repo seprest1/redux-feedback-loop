@@ -4,7 +4,7 @@ import './Admin.css';
 
 //COMPONENTS
 import AdminTable from "./AdminTable";
-import Flagwords from './Flagwords';
+import Flagwords from './FlagWords/Flagwords';
 
 function Admin ({getWords}){
     useEffect(() => {
@@ -29,12 +29,8 @@ function Admin ({getWords}){
   
     return(
         <div>
-            <div>
-                <h2>Feedback Results!</h2>
-            </div>
-            <div>
-                <Flagwords getWords={getWords}/>
-            </div>
+            <Flagwords getWords={getWords}/> 
+            <h2>Feedback Results!</h2>
             <table>
                 <thead>
                     <tr>

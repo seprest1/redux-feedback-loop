@@ -3,8 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function Flagwords ({getWords}) {
-    let flaggedWords = useSelector(map => map.flaggedWords);
 
+    let flaggedWords = useSelector(store => store.flaggedWords);
     const [newWord, setNewWord] = useState('');
     const [severity, setSeverity] = useState(0);
 
@@ -29,16 +29,14 @@ function Flagwords ({getWords}) {
 
     return (
         <div className='flagWordsSection'>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Flagged Words</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {flaggedWords.map((word) => {<tr key={word.id}><td >{word.word}</td></tr>})}
-                </tbody>
-            </table>
+            <div className='flagWords'>
+                <h2>Flagged Words</h2>
+                <ul>
+                    {flaggedWords.map(wordObj => (
+                        <li key={wordObj.id}>{wordObj.word}</li>
+                    ))}
+                </ul>
+            </div>
             <input 
                 type = "text"
                 placeholder='New Flag Word:'
