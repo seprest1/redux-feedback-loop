@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminTable from "./AdminTable";
+import './Admin.css';
 
 function Admin(){
     useEffect(() => {
@@ -22,8 +23,6 @@ function Admin(){
             console.log('Error in getting feedback', error)
         });
     };
-
-    console.log(feedback);
 
     return(
         <div>
