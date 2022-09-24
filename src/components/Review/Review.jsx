@@ -1,24 +1,23 @@
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function Review(){
-    // let dataObject = {
-    //     feeling: 4,
-    //     understanding: 5,
-    //     support: 3,
-    //     comments: 'Hi I hope this works'
-    // }
+    const feedback = useSelector(store => store.feedback);
+        const feeling = feedback.feeling; 
+        const understanding = feedback.understanding;
+        const support = feedback.support;
+        const comments = feedback.comments;
 
     const postFeedback = () => {
         axios({
             method: 'POST',
             url: '/feedback',
-            data: 
-            {
-                feeling: 4,
-                understanding: 5,
-                support: 3,
-                comments: 'Hi I hope this works'
+            data: {
+                feeling,
+                understanding,
+                support,
+                comments
             }
         })
         .then(response => {
@@ -39,10 +38,10 @@ function Review(){
         <div>
             <h2>Review Your Feedback!</h2>
             <ul>
-                <li>Feelings: 5</li>
-                <li>Understanding: 5</li>
-                <li>Support: 5</li>
-                <li>Comments: I love this stuff!</li>
+                <li>Feelings: {feeling}</li>
+                <li>Understanding: {understanding}</li>
+                <li>Support: {support}</li>
+                <li>Comments: {comments}</li>
             </ul>
             <button onClick={postFeedback}>Submit</button>
         </div>
