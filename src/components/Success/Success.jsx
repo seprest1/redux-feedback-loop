@@ -1,4 +1,13 @@
+import { useHistory } from 'react-router-dom';
+
+
+
 function Success(){
+    const history = useHistory();
+    const sendToNext = () => {
+        history.push('/');
+    }
+    
     return(
         <div>
             <div>
@@ -6,7 +15,7 @@ function Success(){
             </div>
             <div>
                 <h2>Thank you!</h2>
-                <button>Leave New Feedback</button>
+                <button onClick={sendToNext}>Leave New Feedback</button>
             </div>
         </div>
     )
