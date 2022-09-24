@@ -2,6 +2,8 @@ import axios from "axios";
 import './Admin.css';
 
 function AdminTable ({row, getFeedback}){
+
+    //DELETE ROUTE
     const deleteFeedback = () => {
         axios({
             method: 'DELETE',
@@ -16,12 +18,29 @@ function AdminTable ({row, getFeedback}){
         });
     };
 
+    //PUT ROUTE
+    const flagFeedback = (row) => {
+        axios({
+            method: 'PUT',
+            url: `/feedback/${row.id}`,
+            data: {flagged: true}
+        })
+        .then(response => {
+            console.log('Flagged feedback');
+            getFeedback();
+        })
+        .catch(error => {
+            console.log('Error flagging feedback', error);
+        });
+    };
+
     return (
         <tr key={row.id} className={row.flagged === true ? 'flaggedRow' : 'normalRow'}>
             <td>{row.feeling}</td>
             <td>{row.understanding}</td>
             <td>{row.support}</td>
             <td>{row.comments}</td>
+            <td><button onClick={() => {flagFeedback(row)}}>Flag</button></td>
             <td><button onClick={deleteFeedback}>Delete</button></td>
         </tr>
     )

@@ -75,6 +75,25 @@ router.post('/flagged_words', (req, res) => {
         });
 });
 
+//PUT ROUTE
+router.put('/:id', (req, res) => {
+    console.log(req.params);
+    const queryText = 
+        `UPDATE "feedback"
+            SET flagged=true
+                WHERE id=$1;`;
+    const sqlValue = [req.params.id];
+    pool.query (queryText, sqlValue)
+        .then (result => {
+            console.log('Flagged feedback, PUT route');
+            res.sendStatus(200);
+        })
+        .catch (error => {
+            console.log('Flagged feedback failed, lol:', error);
+            res.sendStatus(500);
+        });
+});
+
 //DELETE ROUTE
 router.delete('/:id', (req, res) => {
     console.log(req.params);

@@ -38,6 +38,7 @@ function Admin ({getWords}){
                         <th>Comprehension</th>
                         <th>Support</th>
                         <th>Comments</th>
+                        <th>Flag</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
