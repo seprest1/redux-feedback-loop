@@ -41,7 +41,7 @@ function Admin(){
                     </tr>
                 </thead>
                 <tbody>
-                   {feedback.map(row => <AdminTable key={row.id} row={row}/>)}
+                   {feedback.map(row => <AdminTable key={row.id} row={row} getFeedback={getFeedback}/>)}
                 </tbody>
             </table>
         </div>

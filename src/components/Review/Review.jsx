@@ -23,6 +23,7 @@ function Review(){
         .then(response => {
             console.log(response);
             sendToNext();
+            clearData();
         })
         .catch(error => {
             console.log('Feedback failed to post', error);
@@ -32,6 +33,10 @@ function Review(){
     const history = useHistory();
     const sendToNext = () => {
         history.push('/success');
+    }
+
+    const clearData = () => {
+        
     }
 
     return(
