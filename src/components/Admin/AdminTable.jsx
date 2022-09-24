@@ -4,7 +4,7 @@ function AdminTable ({row, getFeedback}){
     const deleteFeedback = () => {
         axios({
             method: 'DELETE',
-            url: `/feedback/delete/${row.id}`
+            url: `/feedback/${row.id}`
         })
         .then(response => {
             console.log('Deleted feedback');

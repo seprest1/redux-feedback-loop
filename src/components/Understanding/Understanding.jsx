@@ -2,19 +2,20 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useState } from 'react';
 
-function Understanding(){
+function Understanding ( ) {
     const [understanding, setUnderstanding] = useState(0);
 
     const dispatch = useDispatch();
     const setUnderstandingReducer = () => {
-        if (understanding >= 1){
+        if (understanding >= 1){    //if user has put in input, send to reducer
             console.log(understanding);
             const action = {type:'SET_UNDERSTANDING', payload: Number(understanding)};
             dispatch(action);
             sendToNext();
-            if (understanding < 3){
-                const action = {type:'SET_FLAG'};
+            if (understanding < 3){     //if input is too low, send to reducer
+                const action = {type:'SET_AS_FLAGGED'}
                 dispatch(action);
+                console.log('Feedback is flagged');
             }
         }
         else {

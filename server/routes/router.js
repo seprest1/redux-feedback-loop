@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-//GET ROUTE
+//GET ROUTES
 router.get('/admin', (req, res) => {
-    console.log('In /admin GET route');
+    console.log('GET /admin received a request');
     const queryText = 
         `SELECT * FROM "feedback"
-            ORDER BY id DESC;`
+            ORDER BY id DESC;`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);
@@ -18,16 +18,32 @@ router.get('/admin', (req, res) => {
         });
 });
 
+router.get('/flaggedwords', (req, res) => {
+    console.log('GET /flaggedwords received a request');
+    const queryText = 
+        `SELECT * FROM "flagged_words"
+            ORDER by id DESC;`;
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('Failed to get flagged words', error);
+            res.sendStatus(500);
+        });
+});
+
 //POST ROUTE
 router.post('/', (req, res) => {
     console.log('In /feedback POST route');
     console.log(req.body);
     const queryText = 
         `INSERT INTO "feedback"
-            (feeling, understanding, support, comments)
+            (feeling, understanding, support, comments, flagged)
             VALUES
-            ($1, $2, $3, $4);`;
-    const sqlValues = [req.body.feeling, req.body.understanding, req.body.support, req.body.comments]
+            ($1, $2, $3, $4, $5);`;
+    const sqlValues = [req.body.feeling, req.body.understanding, 
+        req.body.support, req.body.comments, req.body.flagged];
     pool.query(queryText, sqlValues)
         .then(result => {
             res.sendStatus(201); 
@@ -39,7 +55,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE ROUTE
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     console.log('DELETE feedback route');
     console.log(req.params);
     const queryText = 

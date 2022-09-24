@@ -1,20 +1,47 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Comments(){
-    const [comments, setComments] = useState('');
+    useEffect(() => {
+        getWords();
+      }, []);
 
-    const dispatch = useDispatch();
-    const setCommentReducer = () => {
-        console.log(comments);
-        const action = {type:'ADD_COMMENTS', payload: comments};
-        dispatch(action);
-        sendToNext();
-        if (support < 3){
-            const action = {type:'SET_FLAG'};
-            dispatch(action);
-        }
+    const [comments, setComments] = useState('');
+    const [flaggedWords, setFlaggedWords] = useState([]);
+
+    //GET FLAGGED WORDS FROM DB
+    const getWords = () => {
+        axios({
+            method: 'GET',
+            url: '/feedback/flaggedwords'
+        })
+        .then((response) => {
+            console.log(response.data);
+            setFlaggedWords(response.data)
+        })
+        .catch((error) => {
+            console.log('Error getting flagged words from DB', error);
+        });
+    };
+
+    //FUNCTION TO FLAG COMMENTS
+    const searchComments = (arrayOfFlaggedWords, string) =>{
+        for (let word of arrayOfFlaggedWords){
+            const result = string.indexOf(word.name);     //search through string to find match
+
+            if (result === -1){   //if there's no match
+                const action = {type:'NOT_FLAGGED'}; // send to reducer
+                dispatch(action);
+                console.log('Word not found.');
+            }
+            else{   //match
+                const action = {type:'SET_AS_FLAGGED'}; // send to reducer
+                dispatch(action);
+                console.log(`Comments are flagged for containing ${word}`);
+            }
+        }//end of loop
     }
 
     const history = useHistory();
@@ -22,20 +49,12 @@ function Comments(){
         history.push('/review');
         }
 
-    //FUNCTION TO FLAG COMMENTS
-    const searchComments = (arrayOfFlaggedWords, string) =>{
-        for (flaggedWord of arrayOfFlaggedWords){
-            const result = string.indexOf(flaggedWord);     //search through string to find match
-
-            if (result === -1){   //if there's no match
-                console.log('clean');
-                return false;
-            }
-            else{   //match
-                console.log(flaggedWord, 'was found!');
-                return true;
-            }
-        }
+    const dispatch = useDispatch();
+    const setCommentReducer = () => {
+        const action = {type:'ADD_COMMENTS', payload: comments}; //send to reducer
+        dispatch(action);
+        searchComments(flaggedWords, comments); //search comments for flagged words
+        sendToNext();
     }
 
     return(

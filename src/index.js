@@ -20,6 +20,10 @@ const feedback = (state = {}, action) => {
             return {...state, support: action.payload};
         case('ADD_COMMENTS'):
             return {...state, comments: action.payload};
+        case('SET_AS_FLAGGED'):
+            return{...state, flagged: true};
+        case('NOT_FLAGGED'):
+            return{...state, flagged: false};
         case('CLEAR_FEEDBACK'):
             return {};
         default:
