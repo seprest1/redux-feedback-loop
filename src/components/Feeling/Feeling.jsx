@@ -3,16 +3,20 @@ import { useDispatch } from "react-redux";
 import { useState } from 'react';
 
 
-function Feeling(){
+function Feeling ( ) {
     const [feelings, setFeelings] = useState(0);
 
     const dispatch = useDispatch();
     const setFeelingReducer = () => {
-        if (feelings >= 1){
-            console.log(feelings);
+        if (feelings >= 1){     //if user has put in input, send to reducer
             const action = {type:'SET_FEELINGS', payload: Number(feelings)};
             dispatch(action);
             sendToNext();
+            if (feelings < 3){     //if input is too low, send to reducer
+                const action = {type:'SET_FLAGGED', payload: true}
+                dispatch(action);
+                console.log('Feedback is flagged');
+            }
         }
         else{
             alert('Please fill in a response.');

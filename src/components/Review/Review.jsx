@@ -4,10 +4,12 @@ import axios from 'axios';
 
 function Review(){
     const feedback = useSelector(store => store.feedback);
+        //defining keys for data object
         const feeling = feedback.feeling; 
         const understanding = feedback.understanding;
         const support = feedback.support;
         const comments = feedback.comments;
+        const flagged = feedback.flagged;
 
     const postFeedback = () => {
         axios({
@@ -17,7 +19,8 @@ function Review(){
                 feeling,
                 understanding,
                 support,
-                comments
+                comments,
+                flagged
             }
         })
         .then(response => {

@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import AdminTable from "./AdminTable";
+import './Admin.css';
 
-function Admin(){
+//COMPONENTS
+import AdminTable from "./AdminTable";
+import Flagwords from './FlagWords/Flagwords';
+
+function Admin ({getWords}){
     useEffect(() => {
         getFeedback();
       }, []);
@@ -22,14 +26,11 @@ function Admin(){
             console.log('Error in getting feedback', error)
         });
     };
-
-    console.log(feedback);
-
+  
     return(
         <div>
-            <div>
-                <h2>Feedback Results!</h2>
-            </div>
+            <Flagwords getWords={getWords}/> 
+            <h2>Feedback Results!</h2>
             <table>
                 <thead>
                     <tr>

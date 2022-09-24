@@ -1,10 +1,11 @@
 import axios from "axios";
+import './Admin.css';
 
 function AdminTable ({row, getFeedback}){
     const deleteFeedback = () => {
         axios({
             method: 'DELETE',
-            url: `/feedback/delete/${row.id}`
+            url: `/feedback/${row.id}`
         })
         .then(response => {
             console.log('Deleted feedback');
@@ -16,7 +17,7 @@ function AdminTable ({row, getFeedback}){
     };
 
     return (
-        <tr key={row.id}>
+        <tr key={row.id} className={row.flagged === true ? 'flaggedRow' : 'normalRow'}>
             <td>{row.feeling}</td>
             <td>{row.understanding}</td>
             <td>{row.support}</td>

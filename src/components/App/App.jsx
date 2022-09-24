@@ -1,6 +1,7 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import './App.css';
 
 //components
@@ -15,6 +16,27 @@ import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
 
 function App() {
+  useEffect(() => {
+    getWords();
+  }, []);
+
+  //GET FLAGGED WORDS FROM DB, SEND TO REDUX
+  const dispatch = useDispatch();
+  const getWords = () => {
+    axios({
+        method: 'GET',
+        url: '/feedback/flagged_words'
+    })
+    .then((response) => {
+        console.log('Sending words to Redux', response.data); //send list of words to Redux
+        const action = {type: 'SET_FLAGGED_WORDS', payload: response.data};
+        dispatch(action);
+    })
+    .catch((error) => {
+        console.log('Error getting flagged words from DB', error);
+    });
+  };
+
 
   return ( //in order of loading for user
     <div className='App'>
@@ -42,7 +64,7 @@ function App() {
             <Success/>
         </Route>
         <Route exact path="/admin">
-            <Admin/>
+            <Admin getWords={getWords}/>
         </Route>
       </Router>
     </div>
