@@ -13,7 +13,7 @@ function Understanding ( ) {
             dispatch(action);
             sendToNext();
             if (understanding < 3){     //if input is too low, send to reducer
-                const action = {type:'SET_AS_FLAGGED'}
+                const action = {type:'SET_FLAGGED', payload: true}
                 dispatch(action);
                 console.log('Feedback is flagged');
             }

@@ -9,7 +9,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-// Reducers
+// Reducers             //set to default of false
 const feedback = (state = {}, action) => {
     switch(action.type){
         case('SET_FEELINGS'):
@@ -20,10 +20,8 @@ const feedback = (state = {}, action) => {
             return {...state, support: action.payload};
         case('ADD_COMMENTS'):
             return {...state, comments: action.payload};
-        case('SET_AS_FLAGGED'):
-            return{...state, flagged: true};
-        case('NOT_FLAGGED'):
-            return{...state, flagged: false};
+        case('SET_FLAGGED'):
+            return {...state, flagged: action.payload};
         case('CLEAR_FEEDBACK'):
             return {};
         default:
