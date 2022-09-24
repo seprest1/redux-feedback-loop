@@ -12,7 +12,7 @@ function Flagwords ({getWords}) {
     const addWord = () => {
         axios({
             method: 'POST',
-            url: '/feedback/flaggedwords',
+            url: '/feedback/flagged_words',
             data: {
                 word: newWord,
                 severity: Number(severity)
@@ -20,10 +20,27 @@ function Flagwords ({getWords}) {
         }).then((response) => {
             console.log('Posted new flag word');
             getWords();         //render DOM
-            setNewWord('');     //reset imputs
+            setNewWord('');     //reset inputs
             setSeverity(0);
         }).catch((error) => {
             console.log('Error posting new flag word', error);
+        })
+    }
+
+    //DELETE ROUTE 
+    const setWord = (id) => {   //find the right word to delete
+        const wordToDelete = flaggedWords.filter((word) => word.id === id)[0];
+        deleteWord(wordToDelete);
+    }
+    const deleteWord = (wordToDelete) => {  //delete from DB
+        axios ({
+            method: 'DELETE',
+            url: `/feedback/flagged_words/${wordToDelete.id}`
+        }).then((response) => {
+            console.log('Deleted flagged word', {wordToDelete});
+            getWords();     //render DOM
+        }).catch((error) => {
+            console.log('Error in deleting word', error);
         })
     }
 
@@ -32,18 +49,20 @@ function Flagwords ({getWords}) {
             <div className='flagWords'>
                 <h2>Flagged Words</h2>
                 <ul>
-                    {flaggedWords.map(wordObj => (
-                        <li key={wordObj.id}>{wordObj.word}</li>
+                    {flaggedWords.map(word => (
+                        <li key={word.id}>{word.word}
+                            <button onClick={() => {setWord(word.id)}}>x</button>
+                        </li>
                     ))}
                 </ul>
             </div>
-            <input 
+            <input                  //WORD
                 type = "text"
                 placeholder='New Flag Word:'
                 value={newWord}
                 onChange={(e) => {setNewWord(e.target.value)}}
             />
-            <input 
+            <input              //SEVERITY
                 type = "number"
                 placeholder='Severity: 1-5'
                 min="1"

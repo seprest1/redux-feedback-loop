@@ -18,7 +18,8 @@ router.get('/admin', (req, res) => {
         });
 });
 
-router.get('/flaggedwords', (req, res) => {
+//flagged words
+router.get('/flagged_words', (req, res) => {
     console.log('GET /flaggedwords received a request');
     const queryText = 
         `SELECT * FROM "flagged_words"
@@ -54,7 +55,8 @@ router.post('/', (req, res) => {
         });
 });
 
-router.post('/flaggedwords', (req, res) => {
+//flagged words
+router.post('/flagged_words', (req, res) => {
     console.log('In /flaggedwords POST route');
     console.log(req.body);
     const queryText = 
@@ -75,7 +77,6 @@ router.post('/flaggedwords', (req, res) => {
 
 //DELETE ROUTE
 router.delete('/:id', (req, res) => {
-    console.log('DELETE feedback route');
     console.log(req.params);
     const queryText = 
         `DELETE FROM "feedback"
@@ -83,12 +84,31 @@ router.delete('/:id', (req, res) => {
     const sqlValue = [req.params.id];
     pool.query (queryText, sqlValue)
         .then (result => {
+            console.log('DELETE feedback route');
             res.sendStatus(200);
         })
         .catch (error => {
-            console.log('DELETE /id failed', error);
+            console.log('DELETE /feedback failed', error);
             res.sendStatus(500);
         });
 });
+
+//flagged words
+router.delete('/flagged_words/:id', (req, res) => {
+    console.log(req.params);
+    const queryText = 
+        `DELETE FROM "flagged_words"
+            WHERE id=$1;`;
+    const sqlValue = [req.params.id];
+    pool.query (queryText, sqlValue)
+        .then (result => {
+            console.log('DELETE /flagged_words route');
+            res.sendStatus(200);
+        })
+        .catch (error => {
+            console.log('DELETE /flagged_words failed', error);
+            res.sendStatus(500);
+        });
+})
 
 module.exports = router;

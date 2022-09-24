@@ -25,7 +25,7 @@ function App() {
   const getWords = () => {
     axios({
         method: 'GET',
-        url: '/feedback/flaggedwords'
+        url: '/feedback/flagged_words'
     })
     .then((response) => {
         console.log('Sending words to Redux', response.data); //send list of words to Redux
