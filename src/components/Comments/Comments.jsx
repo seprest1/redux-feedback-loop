@@ -2,9 +2,10 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 
-function Comments({flaggedWords}){
-
+function Comments ( ){
     const [comments, setComments] = useState('');
+    const flaggedWords = useSelector(store => store.flaggedWords);
+
     //FUNCTION TO FLAG COMMENTS
     const searchComments = (arrayOfFlaggedWords, string) =>{
         let isFlagged = false;

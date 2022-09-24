@@ -33,7 +33,7 @@ router.get('/flaggedwords', (req, res) => {
         });
 });
 
-//POST ROUTE
+//POST ROUTES
 router.post('/', (req, res) => {
     console.log('In /feedback POST route');
     console.log(req.body);
@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
         `INSERT INTO "feedback"
             (feeling, understanding, support, comments, flagged)
             VALUES
-            ($1, $2, $3, $4, $5);`;
+                ($1, $2, $3, $4, $5);`;
     const sqlValues = [req.body.feeling, req.body.understanding, 
         req.body.support, req.body.comments, req.body.flagged];
     pool.query(queryText, sqlValues)
@@ -51,7 +51,26 @@ router.post('/', (req, res) => {
         .catch(error => {
             console.log('Feedback failed to POST', error);
             res.sendStatus(500);
+        });
+});
+
+router.post('/flaggedwords', (req, res) => {
+    console.log('In /flaggedwords POST route');
+    console.log(req.body);
+    const queryText = 
+        `INSERT INTO "flagged_words"
+            (word, severity)
+            VALUES
+                ($1, $2);`;
+    const sqlValues = [req.body.word, req.body.severity];
+    pool.query(queryText, sqlValues)
+        .then(result => {
+            res.sendStatus(201);
         })
+        .catch(error => {
+            console.log('Flagged word failed in POST', error);
+            res.sendStatus(500);
+        });
 });
 
 //DELETE ROUTE

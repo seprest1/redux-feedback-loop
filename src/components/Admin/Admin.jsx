@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import AdminTable from "./AdminTable";
 import './Admin.css';
 
-function Admin ({flaggedWords, getWords}){
+//COMPONENTS
+import AdminTable from "./AdminTable";
+import Flagwords from './Flagwords';
+
+function Admin ({getWords}){
     useEffect(() => {
         getFeedback();
       }, []);
@@ -23,16 +26,14 @@ function Admin ({flaggedWords, getWords}){
             console.log('Error in getting feedback', error)
         });
     };
-
-    console.log(flaggedWords);
-    
+  
     return(
         <div>
             <div>
                 <h2>Feedback Results!</h2>
             </div>
-            <div className='flagWordsSection'>
-
+            <div>
+                <Flagwords getWords={getWords}/>
             </div>
             <table>
                 <thead>

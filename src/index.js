@@ -29,10 +29,20 @@ const feedback = (state = {}, action) => {
     }
 }
 
+const flaggedWords = (state = [], action) => {
+    if(action.type === 'SET_FLAGGED_WORDS'){
+            return [...state, action.payload];
+    }
+    else{
+        return state;
+    }
+}
+
 // Store
 const storeInstance = createStore(
     combineReducers({
-       feedback
+       feedback,
+       flaggedWords
     }),
     applyMiddleware(logger)
 )

@@ -5,8 +5,8 @@ CREATE TABLE "feedback" (
   "feeling" INT not null,
   "understanding" INT not null,
   "support" INT not null,
-  "comments" text,
-  "flagged" boolean default false not null,
+  "comments" text default '',
+  "flagged" boolean default false,
   "date" date not null default CURRENT_DATE
 ); 
 
@@ -19,7 +19,7 @@ VALUES (4, 4, 5, 'Doing Great!');
 
 CREATE TABLE "flagged_words" (
 	"id" SERIAL PRIMARY KEY,
-	"word" VARCHAR not null,
+	"word" VARCHAR(100) not null,
 	"severity" INT default 0
 );
 

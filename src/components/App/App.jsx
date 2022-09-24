@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import './App.css';
 
@@ -20,21 +20,23 @@ function App() {
     getWords();
   }, []);
 
-  //GET FLAGGED WORDS FROM DB
-  const [flaggedWords, setFlaggedWords] = useState([]);
+  //GET FLAGGED WORDS FROM DB, SEND TO REDUX
+  const dispatch = useDispatch();
   const getWords = () => {
     axios({
         method: 'GET',
         url: '/feedback/flaggedwords'
     })
     .then((response) => {
-        console.log(response.data);
-        setFlaggedWords(response.data);
+        console.log('Sending words to Redux', response.data); //send list of words to Redux
+        const action = {type: 'SET_FLAGGED_WORDS', payload: response.data};
+        dispatch(action);
     })
     .catch((error) => {
         console.log('Error getting flagged words from DB', error);
     });
   };
+
 
   return ( //in order of loading for user
     <div className='App'>
@@ -53,7 +55,7 @@ function App() {
             <Support/>
         </Route>
         <Route exact path="/comments">
-            <Comments flaggedWords={flaggedWords}/>
+            <Comments/>
         </Route>
         <Route exact path="/review">
             <Review/>
@@ -62,7 +64,7 @@ function App() {
             <Success/>
         </Route>
         <Route exact path="/admin">
-            <Admin flaggedWords={flaggedWords} getWords={getWords}/>
+            <Admin getWords={getWords}/>
         </Route>
       </Router>
     </div>
