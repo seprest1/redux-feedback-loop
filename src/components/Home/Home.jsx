@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 function Home(){
     const history = useHistory();
     const sendToNext = () => {
-    history.push('/feeling');
+    history.push('/feelings');
         }
     const sendToAdmin = () => {
         history.push('/admin')

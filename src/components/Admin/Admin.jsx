@@ -12,7 +12,7 @@ function Admin(){
     const getFeedback = () => {
         axios({
             method: 'GET', 
-            url: '/admin'
+            url: '/feedback/admin'
         })
         .then((response) => {
             console.log(response.data);
