@@ -1,12 +1,11 @@
 function AdminTable ({row}){
-    console.log(row);
 
     return (
         <tr>
-            <td>Feeling</td>
-            <td>Comprehension</td>
-            <td>Support</td>
-            <td>Comments</td>
+            <td>{row.feeling}</td>
+            <td>{row.understanding}</td>
+            <td>{row.support}</td>
+            <td>{row.comments}</td>
             <td><button>Delete</button></td>
         </tr>
     )

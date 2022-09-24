@@ -24,7 +24,7 @@ function Admin(){
     };
 
     console.log(feedback);
-    
+
     return(
         <div>
             <div>
@@ -41,8 +41,7 @@ function Admin(){
                     </tr>
                 </thead>
                 <tbody>
-                    <AdminTable/>
-                   {/* {feedback.map(row => <AdminTable row={row}/>)} */}
+                   {feedback.map(row => <AdminTable key={row.id} row={row}/>)}
                 </tbody>
             </table>
         </div>
