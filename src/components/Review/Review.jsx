@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function Review(){
@@ -8,6 +9,8 @@ function Review(){
     //     support: 3,
     //     comments: 'Hi I hope this works'
     // }
+    const feedback = useSelector(store => store.feedback);
+    console.log(feedback);
 
     const postFeedback = () => {
         axios({
