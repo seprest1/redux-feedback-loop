@@ -12,6 +12,10 @@ function Support(){
             const action = {type:'SET_SUPPORT', payload: Number(support)};
             dispatch(action);
             sendToNext();
+            if (support < 3){
+                const action = {type:'SET_FLAG'};
+                dispatch(action);
+            }
         }
         else{
             alert('Please fill in a response.');

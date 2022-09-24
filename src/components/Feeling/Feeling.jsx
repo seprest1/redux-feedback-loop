@@ -13,6 +13,10 @@ function Feeling(){
             const action = {type:'SET_FEELINGS', payload: Number(feelings)};
             dispatch(action);
             sendToNext();
+            if (feelings < 3){
+                const action = {type:'SET_FLAG'};
+                dispatch(action);
+            }
         }
         else{
             alert('Please fill in a response.');

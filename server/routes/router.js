@@ -7,7 +7,7 @@ router.get('/admin', (req, res) => {
     console.log('In /admin GET route');
     const queryText = 
         `SELECT * FROM "feedback"
-            ORDER BY date`
+            ORDER BY id DESC;`
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

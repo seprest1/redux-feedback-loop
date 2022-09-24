@@ -11,12 +11,32 @@ function Comments(){
         const action = {type:'ADD_COMMENTS', payload: comments};
         dispatch(action);
         sendToNext();
+        if (support < 3){
+            const action = {type:'SET_FLAG'};
+            dispatch(action);
+        }
     }
 
     const history = useHistory();
     const sendToNext = () => {
         history.push('/review');
         }
+
+    //FUNCTION TO FLAG COMMENTS
+    const searchComments = (arrayOfFlaggedWords, string) =>{
+        for (flaggedWord of arrayOfFlaggedWords){
+            const result = string.indexOf(flaggedWord);     //search through string to find match
+
+            if (result === -1){   //if there's no match
+                console.log('clean');
+                return false;
+            }
+            else{   //match
+                console.log(flaggedWord, 'was found!');
+                return true;
+            }
+        }
+    }
 
     return(
         <div>

@@ -12,6 +12,10 @@ function Understanding(){
             const action = {type:'SET_UNDERSTANDING', payload: Number(understanding)};
             dispatch(action);
             sendToNext();
+            if (understanding < 3){
+                const action = {type:'SET_FLAG'};
+                dispatch(action);
+            }
         }
         else {
             alert('Please fill in a response.');
