@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/feeling">
+        <Route exact path="/feelings">
             <Feeling/>
         </Route>
         <Route exact path="/understanding">

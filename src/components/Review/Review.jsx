@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 function Review(){
@@ -35,8 +35,11 @@ function Review(){
         history.push('/success');
     }
 
+    const dispatch = useDispatch();
     const clearData = () => {
-        
+        const action = {type: 'CLEAR_FEEDBACK'}
+        console.log(feedback);
+        dispatch(action);
     }
 
     return(
