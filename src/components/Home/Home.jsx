@@ -5,12 +5,16 @@ function Home(){
     const history = useHistory();
     const sendToNext = () => {
     history.push('/feeling');
+        }
+    const sendToAdmin = () => {
+        history.push('/admin')
     }
     
     return(
         <div>
             <h1>Feedback goes here!</h1>
-            <button onClick={sendToNext}>Click here</button>
+            <button onClick={sendToAdmin}>Admin</button>
+            <button onClick={sendToNext}>Student</button>
         </div>
     )
 }

@@ -10,6 +10,21 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
+app.get('/admin', (req, res) => {
+    console.log('In /admin GET route');
+    const queryText = 
+        `SELECT * FROM "feedback"
+            ORDER BY date`
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('Something failed in admin GET', error);
+            res.sendStatus(500);
+        });
+});
+
 app.post('/feedback', (req, res) => {
     console.log('In /feedback POST route');
     console.log(req.body);
@@ -27,6 +42,23 @@ app.post('/feedback', (req, res) => {
             console.log('Feedback failed to POST', error);
             res.sendStatus(500);
         })
+});
+
+app.delete('/delete/:id', (req, res) => {
+    console.log('DELETE feedback route');
+    console.log(req.params);
+    const queryText = 
+        `DELETE FROM "feedback"
+            WHERE id=$1;`;
+    const sqlValue = [req.params.id];
+    pool.query (queryText, sqlValue)
+        .then (result => {
+            res.sendStatus(200);
+        })
+        .catch (error => {
+            console.log('DELETE /id failed', error);
+            res.sendStatus(500);
+        });
 });
 
 /** ---------- START SERVER ---------- **/

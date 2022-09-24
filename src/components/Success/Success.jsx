@@ -1,13 +1,17 @@
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 function Success(){
     const history = useHistory();
     const sendToNext = () => {
-        history.push('/');
+        history.push('/feelings');
     }
-    
+
+    const feedback = useSelector(store => store.feedback);
+    console.log(feedback);
+
     return(
         <div>
             <div>

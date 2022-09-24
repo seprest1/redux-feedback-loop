@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 function Review(){
@@ -23,6 +23,7 @@ function Review(){
         .then(response => {
             console.log(response);
             sendToNext();
+            clearData();
         })
         .catch(error => {
             console.log('Feedback failed to post', error);
@@ -32,6 +33,13 @@ function Review(){
     const history = useHistory();
     const sendToNext = () => {
         history.push('/success');
+    }
+
+    const dispatch = useDispatch();
+    const clearData = () => {
+        const action = {type: 'CLEAR_FEEDBACK'}
+        console.log(feedback);
+        dispatch(action);
     }
 
     return(
