@@ -7,10 +7,15 @@ function Support(){
 
     const dispatch = useDispatch();
     const setSupportReducer = () => {
-        console.log(support);
-        const action = {type:'SET_SUPPORT', payload: Number(support)};
-        dispatch(action);
-        sendToNext();
+        if (support >= 1){
+            console.log(support);
+            const action = {type:'SET_SUPPORT', payload: Number(support)};
+            dispatch(action);
+            sendToNext();
+        }
+        else{
+            alert('Please fill in a response.');
+        }
     }
 
     const history = useHistory();

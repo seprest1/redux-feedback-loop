@@ -7,10 +7,15 @@ function Understanding(){
 
     const dispatch = useDispatch();
     const setUnderstandingReducer = () => {
-        console.log(understanding);
-        const action = {type:'SET_UNDERSTANDING', payload: Number(understanding)};
-        dispatch(action);
-        sendToNext();
+        if (understanding >= 1){
+            console.log(understanding);
+            const action = {type:'SET_UNDERSTANDING', payload: Number(understanding)};
+            dispatch(action);
+            sendToNext();
+        }
+        else {
+            alert('Please fill in a response.');
+        }
     }
 
     const history = useHistory();

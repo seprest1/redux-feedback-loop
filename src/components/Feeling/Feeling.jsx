@@ -8,10 +8,15 @@ function Feeling(){
 
     const dispatch = useDispatch();
     const setFeelingReducer = () => {
-        console.log(feelings);
-        const action = {type:'SET_FEELINGS', payload: Number(feelings)};
-        dispatch(action);
-        sendToNext();
+        if (feelings >= 1){
+            console.log(feelings);
+            const action = {type:'SET_FEELINGS', payload: Number(feelings)};
+            dispatch(action);
+            sendToNext();
+        }
+        else{
+            alert('Please fill in a response.');
+        }
     }
 
     const history = useHistory();
@@ -27,6 +32,7 @@ function Feeling(){
                 min="0"
                 max="5"
                 placeholder="Feeling?"
+                required={true}
                 value={feelings}
                 onChange={(e) => setFeelings(e.target.value)}/>
             <button onClick={setFeelingReducer}>Next</button>
