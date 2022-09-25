@@ -17,11 +17,12 @@ function Home(){
     return(
         <div className='home_section'>
             <div className='welcome'>
-                <h2>Welcome Back!</h2>
-                <h3>I am a...</h3>
+                <h2 className='welcome_back'>Welcome Back!</h2>
             </div>
-            <Button onClick={sendToAdmin} variant="contained" color="secondary" className='admin'>Admin</Button>
-            <Button onClick={sendToNext} variant="contained" className='student'>Student</Button>
+            <div className='buttons'>
+                <Button onClick={sendToAdmin} variant="contained" className="actual_buttons">Admin</Button>
+                <Button onClick={sendToNext} variant="contained" className="actual_buttons">Student</Button>
+            </div>
         </div>
     )
 }

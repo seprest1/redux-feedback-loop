@@ -66,6 +66,7 @@ function App() {
 
   return ( //in order of loading for user
   <ThemeProvider theme={theme}>
+      <div className='app_body'>
             <Header/>
           <Router>
             <Route exact path="/">
@@ -93,6 +94,7 @@ function App() {
                 <Admin getWords={getWords}/>
             </Route>
           </Router>
+        </div>
     </ThemeProvider>
   );
 }

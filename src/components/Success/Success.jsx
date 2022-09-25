@@ -14,7 +14,7 @@ function Success(){
         <div className='success_section'>
             <h2 className='submission_header'>Thank you for your submission!</h2>
             <div className="new_feedback_button">
-                <Button onClick={sendToNext} variant="contained">Leave New Feedback</Button>
+                <Button onClick={sendToNext} variant="contained">New Feedback</Button>
             </div>
         </div>
     )

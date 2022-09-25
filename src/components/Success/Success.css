@@ -14,8 +14,13 @@
     grid-area: h2;
     padding: 1em;
     margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .new_feedback_button{
-    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

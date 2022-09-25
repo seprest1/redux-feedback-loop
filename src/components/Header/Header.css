@@ -1,8 +1,6 @@
 
 header {
     grid-area: header;
-    font-size: larger;
-    text-align: center;
     margin: 0;
     padding: 2%;
     border-top-left-radius: 20px;
@@ -14,4 +12,6 @@ header {
 h1{
     color: whitesmoke;
     font-weight: 100;
+    font-size: 1.5em;
+    text-align: center;
 }

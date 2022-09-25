@@ -56,7 +56,7 @@ function Review(){
                 <li>Feelings: {feeling}</li>
                 <li>Understanding: {understanding}</li>
                 <li>Support: {support}</li>
-                <li>Comments: {comments}</li>
+                <li className="comment_review">Comments: {comments}</li>
             </ul>
             <div className="submit_button">
                     <Button onClick={postFeedback} variant="contained">Submit</Button>

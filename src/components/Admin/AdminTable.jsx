@@ -1,7 +1,11 @@
 import axios from "axios";
-import { RowDescriptionMessage } from "pg-protocol/dist/messages";
-import { useState } from 'react';
 import './Admin.css';
+
+//MUI
+import Button from '@mui/material/Button';
+import FlagIcon from '@mui/icons-material/Flag';
+import ClearIcon from '@mui/icons-material/Clear';
+
 
 function AdminTable ({row, getFeedback}){
     //DELETE ROUTE
@@ -41,8 +45,8 @@ function AdminTable ({row, getFeedback}){
             <td>{row.understanding}</td>
             <td>{row.support}</td>
             <td>{row.comments}</td>
-            <td><button onClick={() => flagFeedback(row)}>Flag</button></td>
-            <td><button onClick={deleteFeedback}>Delete</button></td>
+            <td><Button onClick={() => flagFeedback(row)} color="secondary"><FlagIcon fontSize="small"/></Button></td>
+            <td><Button onClick={deleteFeedback} color="secondary" size="small"><ClearIcon fontSize="small"/></Button></td>
         </tr>
     )
 }
