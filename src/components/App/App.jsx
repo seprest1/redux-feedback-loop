@@ -15,32 +15,6 @@ import Success from '../Success/Success';
 import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
 
-//MUI
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#84a59d',
-      contrastText: 'rgba(65,40,40,0.87)',
-      dark: '#4d605b',
-    },
-    secondary: {
-      main: '#555b6e',
-    },
-    error: {
-      main: '#f07167',
-    },
-    warning: {
-      main: '#ff9800',
-    },
-    success: {
-      main: '#f6bd60',
-    },
-  },},
-);
-
 function App() {
   useEffect(() => {
     getWords();
@@ -62,7 +36,6 @@ function App() {
         console.log('Error getting flagged words from DB', error);
     });
   };
-
 
   return ( //in order of loading for user
   <ThemeProvider theme={theme}>
@@ -98,5 +71,31 @@ function App() {
     </ThemeProvider>
   );
 }
+
+//////////////////////// M U I //////////////////////////
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#84a59d',
+      contrastText: 'rgba(65,40,40,0.87)',
+      dark: '#4d605b',
+    },
+    secondary: {
+      main: '#555b6e',
+    },
+    error: {
+      main: '#f07167',
+    },
+    warning: {
+      main: '#ff9800',
+    },
+    success: {
+      main: '#f6bd60',
+    },
+  },},
+);
 
 export default App;

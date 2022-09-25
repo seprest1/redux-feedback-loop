@@ -36,7 +36,6 @@ function Comments ( ){
         const action = {type:'ADD_COMMENTS', payload: comments}; //send to reducer
         dispatch(action);
         setFlag();
-        setDefaultFlag();
         sendToNext(); //send to next page
     }
     const setFlag = () => {
@@ -46,14 +45,7 @@ function Comments ( ){
             dispatch(action);
         }
     }
-    const flagStatus = useSelector(cart => cart.feedback.flagged);
-    console.log(flagStatus, 'hi please work');
-    const setDefaultFlag = () => {
-        if (!flagStatus){ //if there's no flag status
-            const action = {type:'SET_FLAGGED', payload: false}; //set status to false, default
-            dispatch(action);
-        }
-    }
+    
     
     return(
         <div className='comment_section'>
