@@ -1,0 +1,38 @@
+.home_section{
+    grid-area: body;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.8fr 0.8fr;
+    grid-template-areas: 
+        "welcome"
+        "buttons";
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.welcome{
+    grid-area: welcome;
+}
+
+.buttons{
+    grid-area: buttons;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+    justify-content: center;
+    gap: 1em;
+}
+
+.welcome_back{
+    font-size: 3.5em;
+    font-weight: 100;
+    word-wrap: break-word;
+    margin: 0.3em;
+}
+
+.ima{
+    font-size: 1em;
+    font-weight: 400;
+}

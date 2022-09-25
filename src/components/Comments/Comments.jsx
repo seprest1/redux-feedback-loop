@@ -1,6 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
+import './Comments.css';
+
+//MUI
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
 
 function Comments ( ){
     const [comments, setComments] = useState('');
@@ -51,15 +56,20 @@ function Comments ( ){
     }
     
     return(
-        <div>
-            <h2>Any comments that you want to leave?</h2>
-            <input 
-                type="text"
-                placeholder="Comments?"
-                value={comments}
-                onChange={(e) => setComments(e.target.value)}
-                />
-            <button onClick={setCommentReducer}>Next</button>
+        <div className='comment_section'>
+            <h2>Any comments?</h2>
+            <div className='comment_field'>
+                <TextField 
+                    fullWidth
+                    id="outlined-basic" 
+                    label="Comments" 
+                    variant="outlined" 
+                    value={comments}
+                    onChange={(e) => setComments(e.target.value)}/>
+            </div>
+             <div className="comment_button">
+                <Button onClick={setCommentReducer} variant="contained">Next</Button>
+            </div>
         </div>
 
     )

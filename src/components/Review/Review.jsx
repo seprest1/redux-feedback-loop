@@ -1,6 +1,10 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import './Review.css';
+
+//MUI
+import Button from '@mui/material/Button';
 
 function Review(){
     const feedback = useSelector(store => store.feedback);
@@ -46,15 +50,17 @@ function Review(){
     }
 
     return(
-        <div>
+        <div className='review_section'>
             <h2>Review Your Feedback!</h2>
-            <ul>
+            <ul className='review_list'>
                 <li>Feelings: {feeling}</li>
                 <li>Understanding: {understanding}</li>
                 <li>Support: {support}</li>
-                <li>Comments: {comments}</li>
+                <li className="comment_review">Comments: {comments}</li>
             </ul>
-            <button onClick={postFeedback}>Submit</button>
+            <div className="submit_button">
+                    <Button onClick={postFeedback} variant="contained">Submit</Button>
+            </div>
         </div>
     )
 }

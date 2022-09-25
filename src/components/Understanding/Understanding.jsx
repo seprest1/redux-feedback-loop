@@ -1,6 +1,12 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useState } from 'react';
+import '../App/Inputs.css';
+
+//MUI
+import { Slider } from "@mui/material";
+import Button from '@mui/material/Button';
+import swal from 'sweetalert';
 
 function Understanding ( ) {
     const [understanding, setUnderstanding] = useState(0);
@@ -19,7 +25,7 @@ function Understanding ( ) {
             }
         }
         else {
-            alert('Please fill in a response.');
+            swal("Please fill in a response!");
         }
     }
 
@@ -29,18 +35,25 @@ function Understanding ( ) {
     }
 
     return(
-        <div>
-            <h2>How well are you understanding the content?</h2>
-            <input 
-                type="number"
-                min="0"
-                max="5"
-                placeholder="Understanding?"
-                value={understanding}
-                onChange={(e) => setUnderstanding(e.target.value)}/>
-            <button onClick={setUnderstandingReducer}>Next</button>
+        <div className='inputs_section'>
+            <h2 classname="feedback_h2">How well are you understanding the content?</h2>
+                <div className="input_slider">
+                    <Slider
+                        defaultValue={2}
+                        valueLabelDisplay="on"
+                        step={1}
+                        marks={true}
+                        min={0}
+                        max={5}
+                        
+                        value={understanding}
+                        onChange={(e) => setUnderstanding(e.target.value)}
+                    />
+                </div>
+                <div className="input_button">
+                    <Button onClick={setUnderstandingReducer} variant="contained">Next</Button>
+                </div>
         </div>
-
     )
 }
 

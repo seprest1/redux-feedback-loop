@@ -15,6 +15,32 @@ import Success from '../Success/Success';
 import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
 
+//MUI
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#84a59d',
+      contrastText: 'rgba(65,40,40,0.87)',
+      dark: '#4d605b',
+    },
+    secondary: {
+      main: '#555b6e',
+    },
+    error: {
+      main: '#f07167',
+    },
+    warning: {
+      main: '#ff9800',
+    },
+    success: {
+      main: '#f6bd60',
+    },
+  },},
+);
+
 function App() {
   useEffect(() => {
     getWords();
@@ -39,35 +65,37 @@ function App() {
 
 
   return ( //in order of loading for user
-    <div className='App'>
-      <Header/>
-      <Router>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/feelings">
-            <Feeling/>
-        </Route>
-        <Route exact path="/understanding">
-            <Understanding/>
-        </Route>
-        <Route exact path="/support">
-            <Support/>
-        </Route>
-        <Route exact path="/comments">
-            <Comments/>
-        </Route>
-        <Route exact path="/review">
-            <Review/>
-        </Route>
-        <Route exact path="/success">
-            <Success/>
-        </Route>
-        <Route exact path="/admin">
-            <Admin getWords={getWords}/>
-        </Route>
-      </Router>
-    </div>
+  <ThemeProvider theme={theme}>
+      <div className='app_body'>
+            <Header/>
+          <Router>
+            <Route exact path="/">
+                <Home />
+            </Route>
+            <Route exact path="/feelings">
+                <Feeling/>
+            </Route>
+            <Route exact path="/understanding">
+                <Understanding/>
+            </Route>
+            <Route exact path="/support">
+                <Support/>
+            </Route>
+            <Route exact path="/comments">
+                <Comments/>
+            </Route>
+            <Route exact path="/review">
+                <Review/>
+            </Route>
+            <Route exact path="/success">
+                <Success/>
+            </Route>
+            <Route exact path="/admin">
+                <Admin getWords={getWords}/>
+            </Route>
+          </Router>
+        </div>
+    </ThemeProvider>
   );
 }
 

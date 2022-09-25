@@ -1,6 +1,12 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { useState } from 'react';
+import '../App/Inputs.css';
+
+//MUI
+import { Slider } from "@mui/material";
+import Button from '@mui/material/Button';
+import swal from 'sweetalert';
 
 function Support ( ) {
     const [support, setSupport] = useState(0);
@@ -19,7 +25,7 @@ function Support ( ) {
             }
         }
         else{
-            alert('Please fill in a response.');
+            swal("Please fill in a response!");
         }
     }
 
@@ -29,16 +35,24 @@ function Support ( ) {
     }
 
     return(
-        <div>
+        <div className='inputs_section'>
             <h2>How well do you feel supported?</h2>
-            <input 
-                type="number"
-                min="0"
-                max="5"
-                placeholder="Support?"
-                value={support}
-                onChange={(e) => setSupport(e.target.value)}/>
-            <button onClick={setSupportReducer}>Next</button>
+            <div className="input_slider">
+                <Slider
+                    defaultValue={2}
+                    valueLabelDisplay="on"
+                    step={1}
+                    marks={true}
+                    min={0}
+                    max={5}
+                    
+                    value={support}
+                    onChange={(e) => setSupport(e.target.value)}
+                />
+            </div>
+            <div className="input_button">
+                <Button onClick={setSupportReducer} variant="contained">Next</Button>
+            </div>
         </div>
 
     )

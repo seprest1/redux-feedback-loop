@@ -28,24 +28,30 @@ function Admin ({getWords}){
     };
   
     return(
-        <div>
-            <Flagwords getWords={getWords}/> 
-            <h2>Feedback Results!</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feeling</th>
-                        <th>Comprehension</th>
-                        <th>Support</th>
-                        <th>Comments</th>
-                        <th>Flag</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   {feedback.map(row => <AdminTable key={row.id} row={row} getFeedback={getFeedback}/>)}
-                </tbody>
-            </table>
+        <div className='admin_body'>
+            <div className='flag_word_container'>
+                <Flagwords getWords={getWords}/>
+            </div>
+            <div className='feedback_header'>
+                <h2>Feedback Results</h2>
+            </div>
+            <div className='feedback_results'>
+                <table className='feedback_table'>
+                    <thead className='thead'>
+                        <tr>
+                            <th>Feeling</th>
+                            <th>Comprehension</th>
+                            <th>Support</th>
+                            <th>Comments</th>
+                            <th>Flag</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody className='table_body'>
+                    {feedback.map(row => <AdminTable key={row.id} row={row} getFeedback={getFeedback}/>)}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }

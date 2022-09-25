@@ -1,0 +1,31 @@
+.comment_section{
+    grid-area: body;
+    padding: 10%;
+    display: grid;
+    grid-template-areas: 
+        "h2"
+        "textbox"
+        "button";
+    background-color: rgb(245, 245, 245);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+h2{
+    grid-area: h2;
+    margin: 0;
+}
+
+.comment_field{
+    grid-area: textbox;
+    margin: 5% 15%;
+}
+
+.comment_button{
+    grid-area: button;
+    width: 10%;
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+}

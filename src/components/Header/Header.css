@@ -1,0 +1,17 @@
+
+header {
+    grid-area: header;
+    margin: 0;
+    padding: 2%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 1px solid darkgrey;
+    background-image: linear-gradient(to right, rgb(23, 93, 74) , rgb(41, 64, 58));
+}
+
+h1{
+    color: whitesmoke;
+    font-weight: 100;
+    font-size: 1.5em;
+    text-align: center;
+}
