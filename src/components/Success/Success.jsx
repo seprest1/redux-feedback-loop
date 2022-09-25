@@ -1,4 +1,8 @@
 import { useHistory } from 'react-router-dom';
+import './Success.css';
+
+//MUI
+import Button from '@mui/material/Button';
 
 function Success(){
     const history = useHistory();
@@ -7,13 +11,10 @@ function Success(){
     }
 
     return(
-        <div>
-            <div>
-                <h2>Feedback!</h2>
-            </div>
-            <div>
-                <h2>Thank you!</h2>
-                <button onClick={sendToNext}>Leave New Feedback</button>
+        <div className='success_section'>
+            <h2 className='submission_header'>Thank you for your submission!</h2>
+            <div className="new_feedback_button">
+                <Button onClick={sendToNext} variant="contained">Leave New Feedback</Button>
             </div>
         </div>
     )

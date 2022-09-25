@@ -1,23 +1,12 @@
-.App {
+body {
+  font-family: Roboto, sans-serif;
+  display: grid;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  box-shadow: 2px 0px 10px darkgrey;
+  width: 50%;
+  height: 50%;
+  margin: 10% 25%;
+  grid-area: app;
   text-align: center;
-}
-
-.App-header {
-  background-color: #033076;
-  min-height: 70px;
-  padding: 20px;
-  color: white;
-  margin-bottom: 20px;
-}
-
-.App-title {
-  font-size: 2em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-h4 {
-  font-style: italic;
 }

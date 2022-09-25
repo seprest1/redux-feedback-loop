@@ -1,0 +1,21 @@
+.success_section{
+    grid-area: body;
+    padding: 10%;
+    display: grid;
+    grid-template-areas: 
+        "h2"
+        "button";
+    background-color: rgb(245, 245, 245);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.submission_header{
+    grid-area: h2;
+    padding: 1em;
+    margin: 1em;
+}
+
+.new_feedback_button{
+    margin: 3%;
+}

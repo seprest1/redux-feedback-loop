@@ -1,0 +1,34 @@
+.home_section{
+    grid-area: body;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "welcome welcome"
+        "admin student";
+    width: 50%;
+    text-align: center;
+    margin: 100px;
+}
+
+.welcome{
+    grid-area: welcome;
+}
+
+.ima{
+    grid-area: ima;
+
+}
+
+.admin{
+    grid-area: admin;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.student{
+    grid-area: student;
+    width: 35%;
+}

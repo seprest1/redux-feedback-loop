@@ -1,0 +1,32 @@
+.inputs_section{
+    grid-area: body;
+    padding: 10%;
+    display: grid;
+    grid-template-areas: 
+        "h2"
+        "slider"
+        "button";
+    background-color: rgb(245, 245, 245);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+h2{
+    grid-area: h2;
+    padding: 1em;
+    margin: 0;
+}
+
+.input_slider{
+    grid-area: slider;
+    margin: 5% 15%;
+}
+
+.input_button{
+    grid-area: button;
+    width: 10%;
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-end;
+}
