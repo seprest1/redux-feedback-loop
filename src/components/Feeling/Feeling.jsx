@@ -24,7 +24,7 @@ function Feeling ( ) {
             }
         }
         else{
-            swall("Please fill in a response!");
+            swal("Please fill in a response!");
         }
     }
 

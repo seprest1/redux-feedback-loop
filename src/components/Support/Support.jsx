@@ -6,6 +6,7 @@ import '../App/Inputs.css';
 //MUI
 import { Slider } from "@mui/material";
 import Button from '@mui/material/Button';
+import swal from 'sweetalert';
 
 function Support ( ) {
     const [support, setSupport] = useState(0);
@@ -24,7 +25,7 @@ function Support ( ) {
             }
         }
         else{
-            alert('Please fill in a response.');
+            swal("Please fill in a response!");
         }
     }
 
