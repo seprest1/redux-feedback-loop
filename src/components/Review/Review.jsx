@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import axios from 'axios';
 import './Review.css';
 
@@ -7,6 +8,10 @@ import './Review.css';
 import Button from '@mui/material/Button';
 
 function Review(){
+    useEffect(() => {
+        setDefaultFlag();  //if feedback hasn't been flagged, set a key to default of false
+      }, []);
+
     const feedback = useSelector(store => store.feedback);
         //defining keys for data object
         const feeling = feedback.feeling; 
@@ -14,6 +19,16 @@ function Review(){
         const support = feedback.support;
         const comments = feedback.comments;
         const flagged = feedback.flagged;
+
+    const setDefaultFlag = () => { 
+        console.log(flagged);
+        console.log(feedback);
+        if (!(flagged)){ //if there's no flag status
+            const action = {type:'SET_FLAGGED', payload: false}; //set status to false, default
+            dispatch(action);
+        }
+    }
+    
 
     const postFeedback = () => {
         axios({

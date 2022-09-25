@@ -36,7 +36,7 @@ function Understanding ( ) {
 
     return(
         <div className='inputs_section'>
-            <h2 classname="feedback_h2">How well are you understanding the content?</h2>
+            <h2 className="feedback_h2">How well are you understanding the content?</h2>
                 <div className="input_slider">
                     <Slider
                         defaultValue={2}
