@@ -80,9 +80,9 @@ router.put('/:id', (req, res) => {
     console.log(req.params);
     const queryText = 
         `UPDATE "feedback"
-            SET flagged=true
-                WHERE id=$1;`;
-    const sqlValue = [req.params.id];
+            SET flagged=$1
+                WHERE id=$2;`;
+    const sqlValue = [req.body.flagged, req.params.id];
     pool.query (queryText, sqlValue)
         .then (result => {
             console.log('Flagged feedback, PUT route');

@@ -1,3 +1,7 @@
 .flaggedRow{
     background-color: tomato;
 }
+
+.normalRow{
+    background-color: green;
+}

@@ -1,8 +1,9 @@
 import axios from "axios";
+import { RowDescriptionMessage } from "pg-protocol/dist/messages";
+import { useState } from 'react';
 import './Admin.css';
 
 function AdminTable ({row, getFeedback}){
-
     //DELETE ROUTE
     const deleteFeedback = () => {
         axios({
@@ -23,10 +24,10 @@ function AdminTable ({row, getFeedback}){
         axios({
             method: 'PUT',
             url: `/feedback/${row.id}`,
-            data: {flagged: true}
+            data: {flagged: !row.flagged}
         })
         .then(response => {
-            console.log('Flagged feedback');
+            console.log('Switched feedback to:', !row.flagged);
             getFeedback();
         })
         .catch(error => {
@@ -35,12 +36,12 @@ function AdminTable ({row, getFeedback}){
     };
 
     return (
-        <tr key={row.id} className={row.flagged === true ? 'flaggedRow' : 'normalRow'}>
+        <tr key={row.id} className={row.flagged === true ? "flaggedRow" : "normalRow"}>
             <td>{row.feeling}</td>
             <td>{row.understanding}</td>
             <td>{row.support}</td>
             <td>{row.comments}</td>
-            <td><button onClick={() => {flagFeedback(row)}}>Flag</button></td>
+            <td><button onClick={() => flagFeedback(row)}>Flag</button></td>
             <td><button onClick={deleteFeedback}>Delete</button></td>
         </tr>
     )
